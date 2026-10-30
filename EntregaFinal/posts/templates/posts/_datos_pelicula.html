@@ -1,0 +1,7 @@
+{% if post.pelicula or post.genero or post.puntuacion %}
+    <div class="datos-pelicula d-flex flex-wrap align-items-center gap-2 {{ clase_extra }}">
+        {% if post.pelicula %}<span class="fw-semibold">🎬 {{ post.pelicula }}</span>{% endif %}
+        {% if post.genero %}<span class="badge etiqueta-genero">{{ post.get_genero_display }}</span>{% endif %}
+        {% if post.puntuacion %}<span class="estrellas" title="{{ post.get_puntuacion_display }}">{{ post.estrellas }}</span>{% endif %}
+    </div>
+{% endif %}

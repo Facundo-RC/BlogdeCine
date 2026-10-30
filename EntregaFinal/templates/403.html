@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block titulo %}Sin permiso · Butaca{% endblock %}
+{% block contenido %}
+    <div class="text-center py-5">
+        <h1 class="display-4">403</h1>
+        <p class="lead">No tenés permiso para hacer esto. Solo el autor puede editar o eliminar su post.</p>
+        <a href="{% url 'listado_posts' %}" class="btn btn-acento">Volver a los posts</a>
+    </div>
+{% endblock %}

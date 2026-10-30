@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block titulo %}{{ titulo_pagina }} · Butaca{% endblock %}
+{% block contenido %}
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm p-4">
+                <h1 class="h3 mb-3">{{ titulo_pagina }}</h1>
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    {% include "_formulario.html" %}
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-acento">Guardar</button>
+                        <a href="{% if post %}{{ post.get_absolute_url }}{% else %}{% url 'listado_posts' %}{% endif %}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

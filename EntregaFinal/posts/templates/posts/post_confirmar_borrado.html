@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block titulo %}Eliminar post · Butaca{% endblock %}
+{% block contenido %}
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm p-4 border-danger">
+                <h1 class="h3">¿Eliminar este post?</h1>
+                <p>Vas a eliminar <strong>{{ post.titulo }}</strong>. Esta acción no se puede deshacer.</p>
+                <form method="post" class="d-flex gap-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+                    <a href="{{ post.get_absolute_url }}" class="btn btn-outline-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

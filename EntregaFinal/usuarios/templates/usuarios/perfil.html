@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block titulo %}Mi perfil · Butaca{% endblock %}
+{% block contenido %}
+    <div class="card shadow-sm p-4 mb-4">
+        <div class="d-flex flex-column flex-sm-row align-items-center gap-4">
+            {% include "_avatar.html" with usuario=user tamanio="grande" %}
+            <div class="text-center text-sm-start">
+                <h1 class="h3 mb-1">{{ user.username }}</h1>
+                <p class="text-muted mb-2">{{ user.email|default:"Sin email" }}</p>
+                <p class="mb-3">{{ perfil.bio|default:"Todavía no escribiste nada sobre vos." }}</p>
+                <a href="{% url 'editar_perfil' %}" class="btn btn-acento">Editar perfil</a>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="h4 mb-3">Mis posts ({{ posts|length }})</h2>
+    <ul class="list-group">
+        {% for post in posts %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{{ post.get_absolute_url }}">{{ post.titulo }}</a>
+                <span class="text-muted small">{{ post.fecha_creacion|date:"d/m/Y" }}</span>
+            </li>
+        {% empty %}
+            <li class="list-group-item text-muted">Todavía no publicaste ningún post.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

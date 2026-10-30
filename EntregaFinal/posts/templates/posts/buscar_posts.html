@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}Buscar · Butaca{% endblock %}
+{% block contenido %}
+    <h1 class="mb-3">Buscar posts</h1>
+    <form method="get" action="{% url 'buscar_posts' %}" class="d-flex gap-2 mb-4" role="search">
+        <input type="search" name="q" value="{{ busqueda }}" class="form-control" placeholder="Buscar por título, película o contenido" aria-label="Buscar">
+        <button type="submit" class="btn btn-acento">Buscar</button>
+    </form>
+
+    {% if busqueda %}
+        <p class="text-muted">
+            {{ resultados|length }} resultado{{ resultados|length|pluralize }} para "{{ busqueda }}"
+        </p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for post in resultados %}
+                {% include "posts/_tarjeta_post.html" %}
+            {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-warning">No se encontraron posts que coincidan con "{{ busqueda }}".</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
